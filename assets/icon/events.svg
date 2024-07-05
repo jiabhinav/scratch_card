@@ -1,0 +1,15 @@
+<svg id="events" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.799" height="17.435" viewBox="0 0 18.799 17.435">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1.163" y1="0.364" x2="-0.188" y2="0.659" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f9ca87"/>
+      <stop offset="1" stop-color="#f06e7c"/>
+    </linearGradient>
+  </defs>
+  <path id="Stroke_1" data-name="Stroke 1" d="M13.023,6.512A6.512,6.512,0,1,1,6.512,0,6.512,6.512,0,0,1,13.023,6.512Z" fill="url(#linear-gradient)"/>
+  <g id="Icon_feather-calendar" data-name="Icon feather-calendar" transform="translate(4.897 2.517)">
+    <path id="Path_11883" data-name="Path 11883" d="M5.989,6H16.413A1.466,1.466,0,0,1,17.9,7.442V17.534a1.466,1.466,0,0,1-1.489,1.442H5.989A1.466,1.466,0,0,1,4.5,17.534V7.442A1.466,1.466,0,0,1,5.989,6Z" transform="translate(-4.5 -4.558)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Path_11884" data-name="Path 11884" d="M24,3V5.884" transform="translate(-14.321 -3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Path_11885" data-name="Path 11885" d="M12,3V5.884" transform="translate(-8.277 -3)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    <path id="Path_11886" data-name="Path 11886" d="M4.5,15H17.9" transform="translate(-4.5 -9.233)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+  </g>
+</svg>

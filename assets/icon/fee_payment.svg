@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.244" height="20.483" viewBox="0 0 22.244 20.483">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.508" y1="0.261" x2="0.149" y2="1.034" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f9ca87"/>
+      <stop offset="1" stop-color="#f06e7c"/>
+    </linearGradient>
+  </defs>
+  <g id="fee_payment" data-name="fee payment" transform="translate(0.001)">
+    <path id="Fill_33" data-name="Fill 33" d="M8.167,0A8.192,8.192,0,0,0,.658,4.98h0A8.19,8.19,0,0,0,4.98,15.726h0C9.141,17.5,6.418,12.353,8.192,8.192h0C9.966,4.031,15.565,2.432,11.4.658h0A8.164,8.164,0,0,0,8.225,0H8.167Z" transform="matrix(0.848, 0.53, -0.53, 0.848, 8.524, 0)" fill="url(#linear-gradient)"/>
+    <g id="Icon_feather-credit-card" data-name="Icon feather-credit-card" transform="translate(7.673 4.959)">
+      <path id="Path_12777" data-name="Path 12777" d="M2.779,6H14.291A1.3,1.3,0,0,1,15.57,7.321v7.923a1.3,1.3,0,0,1-1.279,1.321H2.779A1.3,1.3,0,0,1,1.5,15.244V7.321A1.3,1.3,0,0,1,2.779,6Z" transform="translate(-1.5 -6)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_12778" data-name="Path 12778" d="M1.5,15H15.57" transform="translate(-1.5 -11.038)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

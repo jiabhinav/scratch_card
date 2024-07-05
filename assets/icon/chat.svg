@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="19.238" height="20.833" viewBox="0 0 19.238 20.833">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.044" y1="0.584" x2="0.956" y2="0.416" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f9ca87"/>
+      <stop offset="1" stop-color="#f06e7c"/>
+    </linearGradient>
+  </defs>
+  <g id="chat" transform="translate(0.001)">
+    <path id="Fill_41" data-name="Fill 41" d="M12.6.023,1.541,1.8A1.84,1.84,0,0,0,.023,3.909h0L1.39,12.526a1.83,1.83,0,0,0,2.094,1.528h0L14.54,12.277a1.84,1.84,0,0,0,1.517-2.108h0L14.691,1.551A1.833,1.833,0,0,0,12.888,0h0a1.843,1.843,0,0,0-.29.023" transform="translate(-0.001 0)" fill="url(#linear-gradient)"/>
+    <path id="Stroke_44" data-name="Stroke 44" d="M13.846,9.231a1.538,1.538,0,0,1-1.538,1.538H3.077L0,13.846V1.538A1.538,1.538,0,0,1,1.538,0H12.308a1.538,1.538,0,0,1,1.538,1.538Z" transform="translate(4.891 5.779)" fill="none" stroke="#2d2d41" stroke-width="1"/>
+  </g>
+</svg>
