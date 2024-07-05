@@ -160,7 +160,7 @@ import '../utill/Utility.dart';
                   ),
 
                  SizedBox(height: 20,),
-                 GridView.builder(
+                 /*GridView.builder(
                    physics: NeverScrollableScrollPhysics(),
                    shrinkWrap: true,
                    itemCount: (controller.modelDashboard).payload!.features!.length,
@@ -197,7 +197,42 @@ import '../utill/Utility.dart';
                      },
                      );
                    },
-                 )
+                 ),*/
+                 ListView.builder(
+                     padding: EdgeInsets.only(top: 5),
+                     primary: false,
+                     shrinkWrap: true,
+                     scrollDirection: Axis.vertical,
+                     itemCount: (controller.modelDashboard).payload!.categories!.length,
+                     itemBuilder: (context, index) {
+                       var model =  (controller.modelDashboard).payload!.features![index];
+                       return InkWell(child:Container(
+                         padding: EdgeInsets.only(top: 20,bottom: 20,left: 10,right: 10),
+                         margin: EdgeInsets.all(10),
+                         alignment: Alignment.centerLeft,
+                         decoration: setBoxDecoration(MyColor.black,10.0),
+                         child: Row(
+                           mainAxisSize: MainAxisSize.min,
+                           children: [
+                             SvgPicture.asset(model.image!,
+                                 fit: BoxFit.scaleDown),
+                             SizedBox(width: 10,),
+                             Text(model.title!,
+                                 textAlign: TextAlign.start,
+                                 style: TextStyle(
+                                     fontSize: 16,
+                                     color: MyColor.golden,
+                                     fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
+                           ],
+                         ),
+                       ),onTap: (){
+                         if(index==0)
+                         {
+                           //Navigator.push(context, MaterialPageRoute(builder: (_) => HomeWork()));
+                         }
+                       },
+                       );
+                     }),
 
               ],
 
