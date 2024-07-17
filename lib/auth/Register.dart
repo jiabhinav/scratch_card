@@ -2,35 +2,28 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:scrach_card/color/MyColor.dart';
+import 'package:scrach_card/src/controller/LoginController.dart';
 
 import '../model/model_login.dart';
 import '../model/model_otp.dart';
 import '../style/AppStyle.dart';
 import '../utill/Utility.dart';
 
-class Register extends StatefulWidget
-{
 
-  @override
-  _Register createState()=>_Register();
-
-}
-
-
- class _Register extends State<Register> {
+ class Register extends StatelessWidget {
    ModelOtp?_mdelLogin = null;
    ModelLogin?modelLogin = null;
+   final controller = Get.put(LoginController());
 
-   final businessname = TextEditingController();
-   final businessaddress = TextEditingController();
-   final businessemail = TextEditingController();
-   final businessnumber = TextEditingController();
+   final textName = TextEditingController();
+   final textEmail = TextEditingController();
+   final textMobile = TextEditingController();
+   final textPassword = TextEditingController();
 
-   final businessgst = TextEditingController();
-   final businespincode = TextEditingController();
-
-
+   final textConfirm = TextEditingController();
+   final textCountry = TextEditingController();
    late final textotp = TextEditingController();
    var otp = "";
    var typedoce = 1;
@@ -39,6 +32,7 @@ class Register extends StatefulWidget
    File?img_aadhar = null;
    var gsttext = "XXXXXXXXXX1212";
    var aadhartext = "XXXXXXX1234";
+
 
 
    @override
@@ -80,6 +74,7 @@ class Register extends StatefulWidget
                    width: double.maxFinite,
                    height: 42,
                    child: TextField(
+                     controller: textName,
                      keyboardType: TextInputType.text,
                      style: addressTextStyle(),
                      decoration: registerInputDecoration("Enter full name"),
@@ -98,6 +93,7 @@ class Register extends StatefulWidget
                    width: double.maxFinite,
                    height: 42,
                    child: TextField(
+                     controller: textEmail,
                      keyboardType: TextInputType.emailAddress,
                      style: addressTextStyle(),
                      decoration: registerInputDecoration("Enter email address"),
@@ -116,12 +112,70 @@ class Register extends StatefulWidget
                    width: double.maxFinite,
                    height: 42,
                    child: TextField(
-
+                     controller: textMobile,
                      keyboardType: TextInputType.number,
                      style: addressTextStyle(),
                      maxLength: 10,
                      buildCounter: null,
                      decoration: registerInputDecoration("Mobile number"),
+
+                   )
+               ),
+
+               Container(
+                 margin: const EdgeInsets.only(left: 2, top: 20),
+                 width: double.maxFinite,
+                 padding: const EdgeInsets.only(bottom: 2),
+                 child: addressText("Password"),
+               ),
+               Container(
+                   width: double.maxFinite,
+                   height: 42,
+                   child: TextField(
+                     controller: textPassword,
+                     style: addressTextStyle(),
+                     maxLength: 10,
+                     buildCounter: null,
+                     decoration: registerInputDecoration("Enter Password"),
+
+                   )
+               ),
+
+
+               Container(
+                 margin: const EdgeInsets.only(left: 2, top: 20),
+                 width: double.maxFinite,
+                 padding: const EdgeInsets.only(bottom: 2),
+                 child: addressText("Confirm Password"),
+               ),
+               Container(
+                   width: double.maxFinite,
+                   height: 42,
+                   child: TextField(
+                     controller: textConfirm,
+                     style: addressTextStyle(),
+                     maxLength: 10,
+                     buildCounter: null,
+                     decoration: registerInputDecoration("Enter Confirm Password"),
+
+                   )
+               ),
+
+               Container(
+                 margin: const EdgeInsets.only(left: 2, top: 20),
+                 width: double.maxFinite,
+                 padding: const EdgeInsets.only(bottom: 2),
+                 child: addressText("Country"),
+               ),
+               Container(
+                   width: double.maxFinite,
+                   height: 42,
+                   child: TextField(
+                     controller: textCountry,
+                     style: addressTextStyle(),
+                     maxLength: 10,
+                     buildCounter: null,
+                     decoration: registerInputDecoration("Enter Country"),
 
                    )
                ),
@@ -137,7 +191,9 @@ class Register extends StatefulWidget
                      color: MyColor.black,
                      borderRadius: BorderRadius.circular(6)),
                  child: TextButton(
-                   onPressed: () {},
+                   onPressed: () {
+                     submit(context);
+                   },
                    child: Text(
                      'Submit',
                      style: TextStyle(
@@ -177,6 +233,33 @@ class Register extends StatefulWidget
        }
      }
    }
+
+   submit(BuildContext context)
+   {
+     print("nameis====  "+ textName.text);
+     var param={
+       "name":textName.text,
+       "email":textEmail.text,
+       "mobile":textMobile.text,
+       "password":textPassword.text,
+       "c_password":textConfirm.text,
+       "country":textCountry.text,
+
+     };
+     controller.register(context,param);
+   }
+
+
+   getValue()
+   {
+     var user=controller.modelRegister;
+     if(user!=null)
+     print("userdateis"+user.message!);
+   }
+
+
+
+
  }
 
    

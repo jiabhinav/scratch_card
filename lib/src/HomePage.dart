@@ -29,6 +29,13 @@ import '../utill/Utility.dart';
     Future.delayed(Duration(seconds: 2),(){
       controller.getDashboard();
     });
+
+    Future.delayed(Duration(seconds: 2),(){
+      controller.getDashboard();
+    });
+
+
+
         return SingleChildScrollView(
           child:GetBuilder<Controller>(
             builder: (_) => controller.isLoading? SizedBox(
