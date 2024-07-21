@@ -68,11 +68,10 @@ class Login extends StatelessWidget {
                   controller: textController_1,
                   maxLength: 50,
                   style: addressTextStyle(),
-                  decoration: registerInputDecoration("Enter mobile number"),
+                  decoration: registerInputDecoration("Enter registered email"),
 
                 )
             ),
-
             Container(
               margin: EdgeInsets.only(left: 10),
               width: double.maxFinite,

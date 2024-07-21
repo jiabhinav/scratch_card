@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:scrach_card/auth/Login.dart';
 
+import 'package:url_launcher/url_launcher.dart';
 import '../color/MyColor.dart';
 import '../model/ModelLogin.dart';
 import '../session/Session.dart';
 import '../utill/Constant.dart';
 import '../utill/Utility.dart';
+import 'HelpSupport.dart';
 import 'HomePage.dart';
 
 
@@ -142,6 +145,8 @@ class _HomeState extends State<HomeMain> {
                 title: Text("Email Contact"),
                 onTap:() =>
                 {
+                  launchEmailSubmission()
+                   //Get.to(HelpSupport())
                 },),
               ListTile(
                 leading: Icon(Icons.rate_review),
@@ -309,6 +314,22 @@ class _HomeState extends State<HomeMain> {
   ],
   ),*/
 
+  void launchEmailSubmission() async {
+    final Uri params = Uri(
+        scheme: 'mailto',
+        path: sp.getEmail()==null?"":sp.getEmail()==""?"":sp.getEmail(),
+        queryParameters: {
+          'subject': 'Your Subject',
+          'body': 'Write your queries here'
+        }
+    );
+//String url = params.toString();
+    if (await canLaunchUrl(params)) {
+      await launchUrl(params);
+    } else {
+      print('Could not launch $params');
+    }
+  }
 
 
 }

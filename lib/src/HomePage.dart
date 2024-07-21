@@ -115,53 +115,72 @@ import '../utill/Utility.dart';
                   ),
 
                  SizedBox(height: 20,),
-                 /*GridView.builder(
+                 GridView.builder(
                    physics: NeverScrollableScrollPhysics(),
                    shrinkWrap: true,
-                   itemCount: (controller.modelDashboard).payload!.features!.length,
+                   itemCount: (controller.image)?.image!.length,
                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                       crossAxisCount: 2,
-                       crossAxisSpacing: 4.0,
+                       crossAxisCount: 3,
+                       crossAxisSpacing: 6.0,
                        mainAxisSpacing: 4.0,
-                       childAspectRatio: 2.5
+                       //childAspectRatio: 2.5
                    ),
                    itemBuilder: (BuildContext context, int index){
-                     var model =  (controller.modelDashboard).payload!.features![index];
-                     return InkWell(child:Container(
-                       alignment: Alignment.center,
-                       decoration: setBoxDecoration(MyColor.bg2,20.0),
-                       child: Row(
-                         mainAxisSize: MainAxisSize.min,
-                         children: [
-                           SvgPicture.asset(model.image!,
-                               fit: BoxFit.scaleDown),
-                           SizedBox(width: 10,),
-                           Text(model.title!,
-                               textAlign: TextAlign.start,
-                               style: TextStyle(
-                                   fontSize: 14,
-                                   color: MyColor.textcolor1,
-                                   fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
-                         ],
+                     var model =  (controller.image)?.image![index];
+                     return model!.open==0?
+                     InkWell(
+                       child:Container(// Border width
+                         decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
+                         child: ClipOval(
+                           child: SizedBox.fromSize(
+                             size: Size.fromRadius(48), // Image radius
+                             child:Stack(
+                               children: [
+                                 Scratcher(
+                                     brushSize: 40,
+                                     threshold: 85,
+                                     color: MyColor.skrach_bg,
+                                     onChange: (value) { print("Scratch progress: $value%");},
+                                     onThreshold: () {
+                                      callAPI(context,(controller.image)!.level.toString(),model.image!);
+                                     },
+                                     child: Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,
+                                     )
+                                 ),
+                                 Center(
+                                   child: Text((index+1).toString(),
+                                       textAlign: TextAlign.center,
+                                       style: TextStyle(
+                                           fontSize: 18,
+                                           color: MyColor.white,
+                                           fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
+                                 ),
+                               ],
+                             ),
+                           ),
+                         ),
                        ),
-                     ),onTap: (){
-                       if(index==0)
-                       {
-                         //Navigator.push(context, MaterialPageRoute(builder: (_) => HomeWork()));
-                       }
-                     },
+                     ):Container(
+                       decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
+                       child: ClipOval(
+                       child: SizedBox.fromSize(
+                       size: Size.fromRadius(48), // Image radius
+                       child:Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,
+                       ),
+                       ),
+                       ),
                      );
                    },
-                 ),*/
+                 ),
 
-                 ListView.builder(
+                /* ListView.builder(
                      padding: EdgeInsets.only(top: 5),
                      primary: false,
                      shrinkWrap: true,
                      scrollDirection: Axis.vertical,
                      itemCount: (controller.image)?.image!.length,
                      itemBuilder: (context, index) {
-                       var model =   (controller.image)?.image![index];
+                       var model = (controller.image)?.image![index];
                        return model!.open==0?
                          InkWell(
                          child:Container(
@@ -183,7 +202,7 @@ import '../utill/Utility.dart';
                          margin: EdgeInsets.all(5),
                           child: Image.network(imageURL+model.image!,width: 200,)
                        );
-                     })
+                     })*/
 
               ],
 

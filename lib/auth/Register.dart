@@ -160,9 +160,9 @@ import '../utill/Utility.dart';
                      style: addressTextStyle(),
                      maxLength: 10,
                      buildCounter: null,
-                       obscureText: true,
-                       enableSuggestions: false,
-                       autocorrect: false,
+                     obscureText: true,
+                     enableSuggestions: false,
+                     autocorrect: false,
                      decoration: registerInputDecoration(
                          "Enter Confirm Password"),
 

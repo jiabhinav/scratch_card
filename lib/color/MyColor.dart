@@ -26,6 +26,7 @@ class MyColor {
   static const textcolor2 = Color(0xFF334856);
   static const bg2 = Color(0xFFF5F5F5);
   static const inbox_bg = Color(0xFF0195FF);
+  static const skrach_bg = Color(0xFF012843);
   static const leavelist_bg = Color(0xFFC9E9E6);
 
 
