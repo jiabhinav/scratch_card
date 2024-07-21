@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:overlay_support/overlay_support.dart';
+import 'package:scrach_card/auth/Login.dart';
 
 import '../color/MyColor.dart';
-import '../model/model_login.dart';
+import '../model/ModelLogin.dart';
 import '../session/Session.dart';
 import '../utill/Constant.dart';
 import '../utill/Utility.dart';
@@ -65,44 +66,11 @@ class _HomeState extends State<HomeMain> {
         },
       child:OverlaySupport(
       child: Scaffold(
-      appBar: _currentIndex==0 ? AppBar(
-           automaticallyImplyLeading: true,
-           leading: _currentIndex!=0?IconButton(
-             icon: const BackButtonIcon(),
-             onPressed: () {
-               onTabTapped(0);
-             },
-           ):null,
-          title: _currentIndex==0?Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                child: Container(
-                    margin: const EdgeInsets.only(left: 10), child: Text(_title,
-                  style: TextStyle(fontSize: 16,color:MyColor.black,
-                      fontFamily:"Montserrat",fontWeight: FontWeight.w500),)),
-                onTap:()=>{
-              //  Navigator.push(context, MaterialPageRoute(builder: (_) => PSchoolInfo()))
-                },
-              ),
-            ],
-          ):Text(_title,style: TextStyle(color: Colors.black,fontSize: 18)),
-
+        appBar: AppBar(title: Text(_title,style: TextStyle(color: Colors.black,fontSize: 18),),
           backgroundColor: Colors.white,
           elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          actions: <Widget>[
-            Padding(padding: EdgeInsets.only(right: 10.0),
-            child: Visibility(
-              visible: isVisible,
-              child:Image.asset(
-                'assets/image/dr1.png',
-                fit: BoxFit.contain,
-                height: 32,
-              ),),)
-
-
-          ], systemOverlayStyle: SystemUiOverlayStyle.dark,
-        ): null,
+         // brightness: Brightness.light,
+          iconTheme: IconThemeData(color: Colors.black)),
         body:SafeArea(
           child: _children[_currentIndex],
 
@@ -141,10 +109,8 @@ class _HomeState extends State<HomeMain> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("XXX Jabs", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black)),
-                              Text("9899XXXXXXXX", style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: Colors.black)),
-                              Text("Edit Profile", style: TextStyle(fontSize: 10,
-                                  fontFamily:"Montserrat",fontWeight: FontWeight.w600,color: Colors.redAccent)),
+                              Text(sp.getName()==null?"Add Name":sp.getName()==""?"Add Name":sp.getName(), style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black)),
+                              Text(sp.getMobile()==null?"Add Mobile":sp.getMobile()==""?"Add Mobile":sp.getMobile(), style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: Colors.black)),
                             ],
                           ))
 
@@ -157,6 +123,46 @@ class _HomeState extends State<HomeMain> {
                 leading: SvgPicture.asset("assets/icon/school_info.svg"),
                 title: Text("Profile Info"),
               ),
+
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text("Home"),
+            onTap:() =>
+            {
+            },),
+
+              ListTile(
+                leading: Icon(Icons.follow_the_signs_outlined),
+                title: Text("Follow on Instagram"),
+                onTap:() =>
+                {
+                },),
+              ListTile(
+                leading: Icon(Icons.email),
+                title: Text("Email Contact"),
+                onTap:() =>
+                {
+                },),
+              ListTile(
+                leading: Icon(Icons.rate_review),
+                title: Text("Rate App"),
+                onTap:() =>
+                {
+                },),
+
+              ListTile(
+                leading: Icon(Icons.share),
+                title: Text("Share With Friend"),
+                onTap:() =>
+                {
+                },),
+
+              ListTile(
+                leading: Icon(Icons.web),
+                title: Text("Visit Website"),
+                onTap:() =>
+                {
+                },),
 
               ListTile(
                 leading: Icon(Icons.exit_to_app),
@@ -184,7 +190,7 @@ class _HomeState extends State<HomeMain> {
         case 0:
           {
             isVisible=true;
-            _title = 'Greenfield Public School';
+            _title = 'Home';
           }
           break;
         case 1:
@@ -239,7 +245,8 @@ class _HomeState extends State<HomeMain> {
   void logout()
   {
     sp.logoutApp();
-    SystemNavigator.pop();
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => Login()), (e) => false);
+    //SystemNavigator.pop();
   }
 
 /*  child: Row(

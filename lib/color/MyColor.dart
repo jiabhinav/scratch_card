@@ -14,7 +14,7 @@ class MyColor {
   static const black = Color(0xFF000000);
   static const black2 = Color(0xFF171717);
   static const white = Color(0xFFFFFFFF);
-  static const red = Color(0xFFF92727);
+  static const red = Color(0xFFE60476);
   static const redLight = Color(0xFFE85D4A);
   static const card1 = Color(0xFFF5FFFC);
   static const border1 = Color(0xFFDBEBE5);
@@ -22,7 +22,7 @@ class MyColor {
   static const gray1 = Color(0xFFB6B6B6);
   static const light_appcolor1 = Color(0xFFE7F7F6);
   static const c1 = Color(0xFFFBE4AB);
-  static const textcolor1 = Color(0xFF033558);
+  static const textcolor1 = Color(0xFF012B49);
   static const textcolor2 = Color(0xFF334856);
   static const bg2 = Color(0xFFF5F5F5);
   static const inbox_bg = Color(0xFF0195FF);

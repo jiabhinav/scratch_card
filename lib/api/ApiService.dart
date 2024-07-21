@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../config/URLS.dart';
+import '../model/ModelLogin.dart';
 import '../model/model_dash_board.dart';
-import '../model/model_login.dart';
 import '../session/Session.dart';
 import '../utill/Utility.dart';
 
@@ -127,12 +127,12 @@ Future<ModelLogin> updateBusniessProfile(BuildContext context,Map map) async {
       headers: <String, String>{
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         'Accept': 'application/json',
-        'Authorization': sp.getToken(),
+        //'Authorization': sp.getToken(),
       },
       body: map
   );
 
-  debugPrint("responseis==>>>>" + jsonEncode(response.body)+"="+sp.getToken().toString());
+  //debugPrint("responseis==>>>>" + jsonEncode(response.body)+"="+sp.getToken().toString());
   print(ModelLogin.fromJson(jsonDecode(response.body)));
   if (response.statusCode == 200) {
     final jsonResponse = json.decode(response.body);

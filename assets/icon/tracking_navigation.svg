@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <g id="tracking_navigation" data-name="tracking navigation" transform="translate(-190 -824)">
-    <g id="Ellipse_1418" data-name="Ellipse 1418" transform="translate(190 824)" fill="none" stroke="#2a2e43" stroke-width="2">
-      <circle cx="10" cy="10" r="10" stroke="none"/>
-      <circle cx="10" cy="10" r="9" fill="none"/>
-    </g>
-    <path id="Icon_feather-navigation" data-name="Icon feather-navigation" d="M4.5,7.118,13.194,3,9.076,11.694,8.161,8.033Z" transform="translate(190.946 827.408)" fill="none" stroke="#2a2e43" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
-  </g>
-</svg>

@@ -1,55 +1,54 @@
-class ModelLogin {
-  ModelLogin({
-      num? status, 
-      Result? result,}){
-    _status = status;
-    _result = result;
-}
 
-  ModelLogin.fromJson(dynamic json) {
-    _status = json['status'];
-    _result = json['result'] != null ? Result.fromJson(json['result']) : null;
+class ModelLogin {
+  int? status;
+  Result? result;
+
+  ModelLogin({this.status, this.result});
+
+  ModelLogin.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    result = json['result'] != null ? Result?.fromJson(json['result']) : null;
   }
-  num? _status;
-  Result? _result;
-ModelLogin copyWith({  num? status,
-  Result? result,
-}) => ModelLogin(  status: status ?? _status,
-  result: result ?? _result,
-);
-  num? get status => _status;
-  Result? get result => _result;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['status'] = _status;
-    if (_result != null) {
-      map['result'] = _result?.toJson();
-    }
-    return map;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['result'] = result!.toJson();
+    return data;
   }
-
 }
 
 class Result {
-  Result({
-      String? status,}){
-    _status = status;
-}
+  String? status;
+  String? name;
+  String? username;
+  String? email;
+  String? phone;
+  int? paid;
+  int? points;
 
-  Result.fromJson(dynamic json) {
-    _status = json['status'];
+  Result({this.status, this.name, this.username, this.email, this.phone, this.paid, this.points});
+
+  Result.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    name = json['name'];
+    username = json['username'];
+    email = json['email'];
+    phone = json['phone'];
+    paid = json['paid'];
+    points = json['points'];
   }
-  String? _status;
-Result copyWith({  String? status,
-}) => Result(  status: status ?? _status,
-);
-  String? get status => _status;
 
   Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['status'] = _status;
-    return map;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['status'] = status;
+    data['name'] = name;
+    data['username'] = username;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['paid'] = paid;
+    data['points'] = points;
+    return data;
   }
-
 }
+

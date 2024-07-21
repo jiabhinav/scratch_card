@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:scrach_card/auth/Login.dart';
 import 'package:scrach_card/color/MyColor.dart';
 import 'package:scrach_card/src/controller/LoginController.dart';
 
-import '../model/model_login.dart';
+import '../model/ModelLogin.dart';
 import '../model/model_otp.dart';
 import '../style/AppStyle.dart';
 import '../utill/Utility.dart';
@@ -32,7 +34,6 @@ import '../utill/Utility.dart';
    File?img_aadhar = null;
    var gsttext = "XXXXXXXXXX1212";
    var aadhartext = "XXXXXXX1234";
-
 
 
    @override
@@ -136,6 +137,9 @@ import '../utill/Utility.dart';
                      style: addressTextStyle(),
                      maxLength: 10,
                      buildCounter: null,
+                       obscureText: true,
+                       enableSuggestions: false,
+                       autocorrect: false,
                      decoration: registerInputDecoration("Enter Password"),
 
                    )
@@ -156,7 +160,11 @@ import '../utill/Utility.dart';
                      style: addressTextStyle(),
                      maxLength: 10,
                      buildCounter: null,
-                     decoration: registerInputDecoration("Enter Confirm Password"),
+                       obscureText: true,
+                       enableSuggestions: false,
+                       autocorrect: false,
+                     decoration: registerInputDecoration(
+                         "Enter Confirm Password"),
 
                    )
                ),
@@ -167,21 +175,48 @@ import '../utill/Utility.dart';
                  padding: const EdgeInsets.only(bottom: 2),
                  child: addressText("Country"),
                ),
-               Container(
-                   width: double.maxFinite,
-                   height: 42,
-                   child: TextField(
-                     controller: textCountry,
-                     style: addressTextStyle(),
-                     maxLength: 10,
-                     buildCounter: null,
-                     decoration: registerInputDecoration("Enter Country"),
+               InkWell(
+                 onTap: (){
+                   showCountryPicker(
+                     context: context,
+                     countryListTheme: CountryListThemeData(
+                       flagSize: 25,
+                       backgroundColor: Colors.white,
+                       textStyle: TextStyle(fontSize: 18, color: Colors.blueGrey),
+                       bottomSheetHeight: 500, // Optional. Country list modal height
+                       //Optional. Sets the border radius for the bottomsheet.
+                       borderRadius: BorderRadius.only(
+                         topLeft: Radius.circular(20.0),
+                         topRight: Radius.circular(20.0),
+                       ),
+                       //Optional. Styles the search field.
+                       inputDecoration: InputDecoration(
+                         labelText: 'Search',
+                         hintText: 'Start typing to search',
+                         prefixIcon: const Icon(Icons.search),
+                         border: OutlineInputBorder(
+                           borderSide: BorderSide(
+                             color: const Color(0xFF8C98A8).withOpacity(0.2),
+                           ),
+                         ),
+                       ),
+                     ),
+                     onSelect: (Country country) =>
+                     /*print('Select country: ${country.displayName}'),*/
+                       controller.setcountry(country.name)
+                   );
+                 },
+                   child: Container(
+                     padding: EdgeInsets.only(left: 10),
+                       width: double.maxFinite,
+                       height: 42,
+                       decoration: setBoxAllOuterBorder(MyColor.textFeildBorder, 10),
+                       child: Align(
+                           alignment: Alignment.centerLeft,
+                           child: Obx(() => Text('${controller.country.value}'))),
+                   ),
 
-                   )
                ),
-
-
-
 
                Container(
                  width: double.maxFinite,
@@ -192,7 +227,7 @@ import '../utill/Utility.dart';
                      borderRadius: BorderRadius.circular(6)),
                  child: TextButton(
                    onPressed: () {
-                     submit(context);
+                     chechValiddation(context);
                    },
                    child: Text(
                      'Submit',
@@ -206,7 +241,7 @@ import '../utill/Utility.dart';
                  padding: const EdgeInsets.only(
                      left: 20, top: 10, right: 10, bottom: 5),
                  child: Text(
-                   'If you have an account?Login here',
+                   'If you have an account? Login here',
                    textAlign: TextAlign.left,
                    style: TextStyle(
                        color: Colors.black, fontWeight: FontWeight.w500),
@@ -221,47 +256,62 @@ import '../utill/Utility.dart';
    }
 
 
-   loadSharedPrefs(ModelLogin modelLogin) {
-     if (modelLogin != null) {
-       if (modelLogin.code == 1) {
-         print("userdata6666" + json.encode(modelLogin));
-         // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => HomeMain()), (e) => false);
-         //Navigator.push(context, MaterialPageRoute(builder: (_) => HomeMain()));
-       }
-       else {
-         showToast(modelLogin.message!, 2);
-       }
+   chechValiddation(BuildContext context){
+
+     if(textName.text.isEmpty)
+     {
+       showToast('Enter full name',2);
+     }
+     else if(textEmail.text.isEmpty)
+     {
+       showToast('Enter email',2);
+     }
+
+     else if(textMobile.text.isEmpty)
+     {
+       showToast('Enter 10 digit mobile number',2);
+     }
+     else if(textPassword.text.isEmpty)
+     {
+       showToast('Enter password',2);
+     }
+     else if(textConfirm.text.isEmpty)
+     {
+       showToast('Enter confirm-password',2);
+     }
+     else if(controller.country=="Select Country")
+     {
+       showToast('Select Country',2);
+     }
+
+     else
+     {
+       submit(context);
+     }
+
+   }
+
+
+   submit(BuildContext context) async
+   {
+     var param = {
+       "name": textName.text,
+       "email": textEmail.text,
+       "mobile": textMobile.text,
+       "password": textPassword.text,
+       "c_password": textConfirm.text,
+       "country": controller.country.value,
+
+     };
+     final user = await controller.register(context, param);
+     if (user.status == 1) {
+       showToast(user.result!.status!, 2);
+       Get.to(Login());
+     }
+     else {
+       showToast(user.result!.status!, 2);
      }
    }
 
-   submit(BuildContext context)
-   {
-     print("nameis====  "+ textName.text);
-     var param={
-       "name":textName.text,
-       "email":textEmail.text,
-       "mobile":textMobile.text,
-       "password":textPassword.text,
-       "c_password":textConfirm.text,
-       "country":textCountry.text,
-
-     };
-     controller.register(context,param);
-   }
-
-
-   getValue()
-   {
-     var user=controller.modelRegister;
-     if(user!=null)
-     print("userdateis"+user.message!);
-   }
-
-
-
 
  }
-
-   
- 
-

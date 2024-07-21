@@ -260,6 +260,14 @@ setBoxOuterBorder(Color color,double radius)
   );
 }
 
+setBoxAllOuterBorder(Color color,double radius)
+{
+  return  BoxDecoration(
+    border: Border.all(color: color),
+    borderRadius: BorderRadius.circular(10),
+  );
+}
+
 getLeaveInputFeildDecoration() {
   return InputDecoration(
     border: InputBorder.none,
@@ -346,6 +354,7 @@ customContainer(Widget? child,BuildContext context){
     child: child,
   );
 }
+
 
 
 

@@ -9,17 +9,21 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:scrach_card/src/controller/HomeController.dart';
+import 'package:scratcher/widgets.dart';
 
 import '../api/Controller.dart';
 import '../color/MyColor.dart';
 
 import '../model/model_dash_board.dart';
+import '../session/Session.dart';
+import '../utill/Constant.dart';
 import '../utill/Utility.dart';
 
 
  class HomePage extends StatelessWidget {
   late Future<ModelDashBoard> futureAlbum;
-  final controller = Get.put(Controller());
+  final controller = Get.put(HomeController());
   final ModelDashBoard? _modelDashBoard=null;
 
 
@@ -27,96 +31,39 @@ import '../utill/Utility.dart';
   Widget build(BuildContext context) {
 
     Future.delayed(Duration(seconds: 2),(){
-      controller.getDashboard();
+      var param = {"username": sp.getEmail(),};
+      controller.getLevel(param, context);
     });
-
-    Future.delayed(Duration(seconds: 2),(){
-      controller.getDashboard();
-    });
-
-
-
         return SingleChildScrollView(
-          child:GetBuilder<Controller>(
+          child:GetBuilder<HomeController>(
             builder: (_) => controller.isLoading? SizedBox(
               height: MediaQuery.of(context).size.height / 1.3,
               child: Center(child: CircularProgressIndicator(),),) :
                 Padding(padding: EdgeInsets.all(10),
                 child:Column(
                children:<Widget> [
-                 SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Flexible(
-                      fit: FlexFit.tight,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 25,
-                        decoration: setBoxDecoration(MyColor.black,10.0),
-                        child: Text('Daily Activity',
-                          style: TextStyle(fontSize:10,color: MyColor.golden,letterSpacing: 3,
-                            fontFamily:"Montserrat",fontWeight: FontWeight.w600),),
-
+                Container(
+                padding: EdgeInsets.all(15),
+                  decoration: setBoxDecoration(MyColor.black,10.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Headline',
+                        style: TextStyle(color: MyColor.golden, fontSize: 16,
+                            fontFamily:"Montserrat",fontWeight: FontWeight.w500),
                       ),
-                    ),
-                    Flexible(
-                      fit: FlexFit.loose,
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 25,
-                        decoration: setBoxDecoration(MyColor.white,10.0),
-                        child: Text(
-                          'Better Love life',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize:10,color: MyColor.black,letterSpacing: 3,
-                              fontFamily:"Montserrat",fontWeight: FontWeight.w600),
-                        ),
-
+                      SizedBox(height: 10),
+                      Text(
+                        'Lorem ipsum dolor sit amet, consetetur sadip scing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat',
+                        style: TextStyle(color: MyColor.golden, fontSize: 11,
+                            fontFamily:"Montserrat",fontWeight: FontWeight.w400),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 25),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    viewportFraction: .95,
-                      enableInfiniteScroll: true,
-                      enlargeCenterPage: true,
-                      autoPlay: false,
-                      scrollDirection: Axis.horizontal,
 
+
+                    ],
                   ),
-                  items:  (controller.modelDashboard).payload!.banners!.map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: setBoxDecoration(MyColor.black,10.0),
-                          child: Column(
-                            children: [
-                              Text(
-                                'Headline',
-                                style: TextStyle(color: MyColor.golden, fontSize: 16,
-                                    fontFamily:"Montserrat",fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                'Lorem ipsum dolor sit amet, consetetur sadip scing elitr, sed diam nonumy eirmod tempor invi dunt ut labore et dolore magna aliquyam erat',
-                                style: TextStyle(color: MyColor.golden, fontSize: 11,
-                                    fontFamily:"Montserrat",fontWeight: FontWeight.w400),
-                              ),
-
-
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  }).toList()),
+                ),
                  SizedBox(height: 20),
-
                   Container(
                     margin: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Column(
@@ -136,9 +83,10 @@ import '../utill/Utility.dart';
                               primary: false,
                               shrinkWrap: true,
                               scrollDirection: Axis.horizontal,
-                              itemCount: (controller.modelDashboard).payload!.categories!.length,
+                              itemCount: (controller.modelGetLevel)?.result!.levels!.length,
                               itemBuilder: (context, index) {
-                                var cat =  (controller.modelDashboard).payload!.categories![index];
+                                var cat =  (controller.modelGetLevel)?.result!.levels![index];
+                              //  controller.image= cat;
                                 return InkWell(
                                   child:Container(
                                     margin: EdgeInsets.all(2),
@@ -149,7 +97,7 @@ import '../utill/Utility.dart';
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.black
                                     ),
-                                    child:   Text(cat.name!,
+                                    child:   Text("Level "+cat!.level.toString(),
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             fontSize: 14,
@@ -157,7 +105,7 @@ import '../utill/Utility.dart';
                                             fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
                                   ),
                                     onTap: () => {
-
+                                    controller.setLevelImage(cat)
                                     });
                               }),
                         ),
@@ -205,41 +153,37 @@ import '../utill/Utility.dart';
                      );
                    },
                  ),*/
+
                  ListView.builder(
                      padding: EdgeInsets.only(top: 5),
                      primary: false,
                      shrinkWrap: true,
                      scrollDirection: Axis.vertical,
-                     itemCount: (controller.modelDashboard).payload!.categories!.length,
+                     itemCount: (controller.image)?.image!.length,
                      itemBuilder: (context, index) {
-                       var model =  (controller.modelDashboard).payload!.features![index];
-                       return InkWell(child:Container(
-                         padding: EdgeInsets.only(top: 20,bottom: 20,left: 10,right: 10),
-                         margin: EdgeInsets.all(10),
-                         alignment: Alignment.centerLeft,
-                         decoration: setBoxDecoration(MyColor.black,10.0),
-                         child: Row(
-                           mainAxisSize: MainAxisSize.min,
-                           children: [
-                             SvgPicture.asset(model.image!,
-                                 fit: BoxFit.scaleDown),
-                             SizedBox(width: 10,),
-                             Text(model.title!,
-                                 textAlign: TextAlign.start,
-                                 style: TextStyle(
-                                     fontSize: 16,
-                                     color: MyColor.golden,
-                                     fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
-                           ],
+                       var model =   (controller.image)?.image![index];
+                       return model!.open==0?
+                         InkWell(
+                         child:Container(
+                           decoration: setBoxDecoration(MyColor.black,20.0),
+                           margin: EdgeInsets.all(5),
+                           child: Scratcher(
+                           brushSize: 30,
+                           threshold: 55,
+                           color: Colors.black,
+                           onChange: (value) { print("Scratch progress: $value%");},
+                           onThreshold: () {
+                             callAPI(context,(controller.image)!.level.toString(),model.image!);
+                             },
+                           child: Image.network(imageURL+model.image!,width: 200,)
+                           ),
                          ),
-                       ),onTap: (){
-                         if(index==0)
-                         {
-                           //Navigator.push(context, MaterialPageRoute(builder: (_) => HomeWork()));
-                         }
-                       },
+                       ):Container(
+                         decoration: setBoxDecoration(MyColor.black,20.0),
+                         margin: EdgeInsets.all(5),
+                          child: Image.network(imageURL+model.image!,width: 200,)
                        );
-                     }),
+                     })
 
               ],
 
@@ -252,5 +196,30 @@ import '../utill/Utility.dart';
 
 
   }
+
+  void callAPI(BuildContext context,String level,String image) async
+  {
+    var param = {
+      "username": sp.getEmail(),
+      "level": level,
+      "image": image,
+    };
+    //controller.login(param, context);
+    final user = await controller.openLevel(param, context);
+    if(user.status==1)
+    {
+      showToast(user.result!.status!,2);
+      //loadSharedPrefs(user);
+      Future.delayed(Duration(seconds: 1),(){
+        var param = {"username": sp.getEmail(),};
+        controller.getLevel(param, context);
+      });
+    }
+    else
+    {
+      showToast(user.result!.status!,2);
+    }
+  }
+
 
 }

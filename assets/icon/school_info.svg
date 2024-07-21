@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17.951" height="17.951" viewBox="0 0 17.951 17.951">
-  <defs>
-    <linearGradient id="linear-gradient" x1="0.5" y1="0.452" x2="0" y2="0.951" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#f9ca87"/>
-      <stop offset="1" stop-color="#f27d7e"/>
-    </linearGradient>
-  </defs>
-  <path id="school_info" data-name="school info" d="M0,0H17.951V17.951H0Z" fill="url(#linear-gradient)"/>
-</svg>
