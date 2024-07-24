@@ -131,32 +131,42 @@ import '../utill/Utility.dart';
                      InkWell(
                        child:Container(// Border width
                          decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
-                         child: ClipOval(
-                           child: SizedBox.fromSize(
-                             size: Size.fromRadius(48), // Image radius
-                             child:Stack(
-                               children: [
-                                 Scratcher(
-                                     brushSize: 40,
-                                     threshold: 85,
-                                     color: MyColor.skrach_bg,
-                                     onChange: (value) { print("Scratch progress: $value%");},
-                                     onThreshold: () {
-                                      callAPI(context,(controller.image)!.level.toString(),model.image!);
-                                     },
-                                     child: Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,
-                                     )
+                         child: SizedBox.fromSize(
+                           size: Size.fromRadius(48), // Image radius
+                           child:Stack(
+                             children: [
+                               Center(
+                                 child: ClipOval(
+                                   child: SizedBox.fromSize(
+                                   size: Size.fromRadius(48),
+                                   child: Scratcher(
+                                       brushSize: 30,
+                                       threshold: 40,
+                                       color: MyColor.skrach_bg,
+                                       onChange: (value) { print("Scratch progress: $value%");},
+                                       onThreshold: () {
+                                        callAPI(context,(controller.image)!.level.toString(),model.image!);
+                                       },
+                                   child: ClipOval(
+                                    child: SizedBox.fromSize(
+                                   size: Size.fromRadius(48), // Image radius
+                                   child:Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,
+                                   ),
+                                                                  )
+                                      // child: Image.network(imageURL+model.image!, fit: BoxFit.fill,width: 80,height: 80,
+                                       )
+                                   ),
                                  ),
-                                 Center(
-                                   child: Text((index+1).toString(),
-                                       textAlign: TextAlign.center,
-                                       style: TextStyle(
-                                           fontSize: 18,
-                                           color: MyColor.white,
-                                           fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
-                                 ),
-                               ],
-                             ),
+                               )),
+                               Center(
+                                 child: Text((index+1).toString(),
+                                     textAlign: TextAlign.center,
+                                     style: TextStyle(
+                                         fontSize: 18,
+                                         color: MyColor.white,
+                                         fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
+                               ),
+                             ],
                            ),
                          ),
                        ),
