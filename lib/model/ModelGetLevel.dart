@@ -72,18 +72,25 @@ class Levels {
 class Image {
   String? image;
   int? open;
+  String? title;
+  String? descrition;
 
-  Image({this.image, this.open});
+  Image({this.image, this.open,this.title,this.descrition});
 
   Image.fromJson(Map<String, dynamic> json) {
     image = json['image'];
     open = json['open'];
+    title = json['title'];
+    descrition = json['descrition'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['image'] = this.image;
     data['open'] = this.open;
+    data['title'] = this.title;
+    data['descrition'] = this.descrition;
+
     return data;
   }
 }

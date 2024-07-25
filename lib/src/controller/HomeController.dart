@@ -21,10 +21,19 @@ class HomeController extends GetxController {
     count=num;
     update();
   }
-  void setLevelImage(Levels? img) {
+  void setLevelImage(Levels? img) async {
     image=img;
     update();
+
   }
+
+  void updateLevel(ModelGetLevel?modelGetLevel)
+  {
+    this.modelGetLevel=modelGetLevel;
+    update();
+  }
+
+
   void getLevel(Object? params,BuildContext context) async {
 
     final response = await http.post(

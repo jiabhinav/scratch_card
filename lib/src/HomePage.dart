@@ -19,12 +19,16 @@ import '../model/model_dash_board.dart';
 import '../session/Session.dart';
 import '../utill/Constant.dart';
 import '../utill/Utility.dart';
+import 'alertdialog/ImageDilaogView.dart';
 
 
  class HomePage extends StatelessWidget {
   late Future<ModelDashBoard> futureAlbum;
   final controller = Get.put(HomeController());
   final ModelDashBoard? _modelDashBoard=null;
+
+  int levelIndex=-1;
+  int selectedIndex = -1;
 
 
   @override
@@ -58,7 +62,6 @@ import '../utill/Utility.dart';
                         style: TextStyle(color: MyColor.golden, fontSize: 11,
                             fontFamily:"Montserrat",fontWeight: FontWeight.w400),
                       ),
-
 
                     ],
                   ),
@@ -95,6 +98,7 @@ import '../utill/Utility.dart';
                                     alignment: Alignment.center,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(color: selectedIndex==index?MyColor.golden:Colors.black,width: 2),
                                       color: Colors.black
                                     ),
                                     child:   Text("Level "+cat!.level.toString(),
@@ -105,6 +109,8 @@ import '../utill/Utility.dart';
                                             fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
                                   ),
                                     onTap: () => {
+                                    selectedIndex=index,
+                                    controller.updateLevel((controller.modelGetLevel)),
                                     controller.setLevelImage(cat)
                                     });
                               }),
@@ -142,9 +148,12 @@ import '../utill/Utility.dart';
                                    child: Scratcher(
                                        brushSize: 30,
                                        threshold: 40,
+                                       rebuildOnResize: true,
                                        color: MyColor.skrach_bg,
                                        onChange: (value) { print("Scratch progress: $value%");},
                                        onThreshold: () {
+                                         levelIndex=index;
+                                         print("callAPI==="+(controller.image)!.level.toString()+"=="+model.image!);
                                         callAPI(context,(controller.image)!.level.toString(),model.image!);
                                        },
                                    child: ClipOval(
@@ -170,14 +179,24 @@ import '../utill/Utility.dart';
                            ),
                          ),
                        ),
-                     ):Container(
-                       decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
-                       child: ClipOval(
-                       child: SizedBox.fromSize(
-                       size: Size.fromRadius(48), // Image radius
-                       child:Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,
-                       ),
-                       ),
+                     ):InkWell(
+                      onTap: () {
+                         //ImageDialogView(context,imageURL+model.image!,"qedefefe2ffefff");
+                         ImageDialogView(context,imageURL+model.image!,model.title!,model.descrition!);
+                       },
+                  /*    onTap: () async {
+                      await showDialog(
+                      context: context,
+                      builder: (_) => ImageDialogView((imageURL+model.image!),model.title!,model.descrition!));},
+*/
+                       child: Container(
+                         decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
+                         child: ClipOval(
+                         child: SizedBox.fromSize(
+                         size: Size.fromRadius(48), // Image radius
+                         child:Image.network(imageURL+model.image!, fit: BoxFit.cover,width: 80,height: 80,),
+                         ),
+                         ),
                        ),
                      );
                    },
@@ -238,11 +257,19 @@ import '../utill/Utility.dart';
     if(user.status==1)
     {
       showToast(user.result!.status!,2);
+      var level=(controller.image);
+      level!.image![levelIndex].open=1;
+          //level!.image![levelIndex].open=1;
+      controller.setLevelImage(level);
+      var model =  (controller.image)?.image![levelIndex];
+      print("openleveris=="+model!.open!.toString());
+
+      showToast(user.result!.status!, 2);
       //loadSharedPrefs(user);
-      Future.delayed(Duration(seconds: 1),(){
+      /*Future.delayed(Duration(seconds: 1),(){
         var param = {"username": sp.getEmail(),};
         controller.getLevel(param, context);
-      });
+      });*/
     }
     else
     {
