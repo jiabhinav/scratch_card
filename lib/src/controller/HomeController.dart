@@ -15,6 +15,10 @@ class HomeController extends GetxController {
   var count = 0;
   var isLoader=null;
   bool isLoading = true;
+
+  int levelIndex=-1;
+  int selectedIndex = -1;
+
   ModelGetLevel?modelGetLevel = null;
   Levels? image=null;
   void setTab(int num) {

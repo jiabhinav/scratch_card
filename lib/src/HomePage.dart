@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:scrach_card/src/ScrachScreenView.dart';
 import 'package:scrach_card/src/controller/HomeController.dart';
 import 'package:scratcher/widgets.dart';
 
@@ -33,7 +34,6 @@ import 'alertdialog/ImageDilaogView.dart';
 
   @override
   Widget build(BuildContext context) {
-
     Future.delayed(Duration(seconds: 2),(){
       var param = {"username": sp.getEmail(),};
       controller.getLevel(param, context);
@@ -135,6 +135,20 @@ import 'alertdialog/ImageDilaogView.dart';
                      var model =  (controller.image)?.image![index];
                      return model!.open==0?
                      InkWell(
+                       onTap: () async {
+                         levelIndex=index;
+                         var arg= [
+                           {"name": model.title!},
+                           {"desc": model.descrition!},
+                           {"url": model.image!,},
+                           {"level": (controller.image)!.level.toString(),}
+                         ];
+                         var data=await Get.to(ScrachScreenView(),arguments: arg);
+                         if(data==true)
+                           {
+                             refreshList();
+                           }
+                       },
                        child:Container(// Border width
                          decoration: BoxDecoration(color: MyColor.skrach_bg, shape: BoxShape.circle),
                          child: SizedBox.fromSize(
@@ -148,6 +162,7 @@ import 'alertdialog/ImageDilaogView.dart';
                                    child: Scratcher(
                                        brushSize: 30,
                                        threshold: 40,
+                                       enabled: false,
                                        rebuildOnResize: true,
                                        color: MyColor.skrach_bg,
                                        onChange: (value) { print("Scratch progress: $value%");},
@@ -276,6 +291,15 @@ import 'alertdialog/ImageDilaogView.dart';
       showToast(user.result!.status!,2);
     }
   }
+
+  void refreshList()
+  {
+    var level=(controller.image);
+    level!.image![levelIndex].open=1;
+    //level!.image![levelIndex].open=1;
+    controller.setLevelImage(level);
+  }
+
 
 
 }

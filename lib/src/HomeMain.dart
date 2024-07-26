@@ -13,6 +13,7 @@ import '../utill/Constant.dart';
 import '../utill/Utility.dart';
 import 'HelpSupport.dart';
 import 'HomePage.dart';
+import 'Legal.dart';
 
 
 class HomeMain extends StatefulWidget {
@@ -129,7 +130,7 @@ class _HomeState extends State<HomeMain> {
 
           ListTile(
             leading: Icon(Icons.home),
-            title: Text("Home"),
+            title: Text("Upgrade to Pro"),
             onTap:() =>
             {
             },),
@@ -167,6 +168,14 @@ class _HomeState extends State<HomeMain> {
                 title: Text("Visit Website"),
                 onTap:() =>
                 {
+                },),
+
+              ListTile(
+                leading: Icon(Icons.web),
+                title: Text("Legal"),
+                onTap:() =>
+                {
+                Get.to(Legal())
                 },),
 
               ListTile(
