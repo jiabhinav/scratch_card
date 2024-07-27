@@ -38,18 +38,14 @@ dependencies:
   http: ^1.0.0
   json_annotation: ^4.0.0
   shared_preferences: ^2.0.8
-  vibration: ^1.8.4
   email_validator: ^2.0.1
   photo_view: ^0.13.0
   flutter_document_picker: ^5.2.3
   get: ^4.6.6
   intl_phone_field: ^3.1.0
-  flutter_otp_text_field: ^1.1.0+2
   carousel_slider: ^4.2.1
   overlay_support: ^2.1.0
-  introduction_screen: ^3.1.14
   flutter_svg: ^2.0.10
-  dotted_border: ^2.1.0
   scratcher: "^2.5.0"
   country_picker: ^2.0.26
   url_launcher: ^6.3.0

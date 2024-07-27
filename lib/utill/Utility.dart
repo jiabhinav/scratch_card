@@ -3,7 +3,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vibration/vibration.dart';
 import '../session/Session.dart';
 import '../color/MyColor.dart';
 
@@ -175,16 +174,10 @@ checkEmail(String email) {
 }
 
 vibrate() async {
-  Vibration.vibrate();
+/*  Vibration.vibrate();
   await Future.delayed(Duration(milliseconds: 100));
-  Vibration.vibrate();
-  /*if (await Vibration.hasCustomVibrationsSupport()) {
-    Vibration.vibrate(duration: 100);
-  } else {
-    Vibration.vibrate();
-    await Future.delayed(Duration(milliseconds: 100));
-    Vibration.vibrate();
-  }*/
+  Vibration.vibrate();*/
+
 }
 
 getOrderStatus() {

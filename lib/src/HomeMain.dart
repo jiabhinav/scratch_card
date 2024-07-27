@@ -124,7 +124,7 @@ class _HomeState extends State<HomeMain> {
                 ),
               ),
               ListTile(
-                leading: SvgPicture.asset("assets/icon/school_info.svg"),
+                leading: Icon(Icons.person),
                 title: Text("Profile Info"),
               ),
 
