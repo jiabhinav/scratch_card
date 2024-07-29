@@ -45,12 +45,14 @@ class Result {
 
 class Levels {
   int? level;
+  String? tag;
   List<Image>? image;
 
-  Levels({this.level, this.image});
+  Levels({this.level,this.tag, this.image});
 
   Levels.fromJson(Map<String, dynamic> json) {
     level = json['level'];
+    tag = json['tag'];
     if (json['image'] != null) {
       image = <Image>[];
       json['image'].forEach((v) {
@@ -62,6 +64,7 @@ class Levels {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['level'] = this.level;
+    data['tag'] = this.tag;
     if (this.image != null) {
       data['image'] = this.image!.map((v) => v.toJson()).toList();
     }

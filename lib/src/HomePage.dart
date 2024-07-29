@@ -101,7 +101,7 @@ import 'alertdialog/ImageDilaogView.dart';
                                       border: Border.all(color: selectedIndex==index?MyColor.golden:Colors.black,width: 2),
                                       color: Colors.black
                                     ),
-                                    child:   Text("Level "+cat!.level.toString(),
+                                    child:   Text(cat!.tag.toString(),
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             fontSize: 14,
@@ -141,7 +141,7 @@ import 'alertdialog/ImageDilaogView.dart';
                            {"name": model.title!},
                            {"desc": model.descrition!},
                            {"url": model.image!,},
-                           {"level": (controller.image)!.level.toString(),}
+                           {"level": (controller.image)!.tag.toString(),}
                          ];
                          var data=await Get.to(ScrachScreenView(),arguments: arg);
                          if(data==true)

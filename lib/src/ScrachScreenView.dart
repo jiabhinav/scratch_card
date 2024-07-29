@@ -113,7 +113,7 @@ import 'controller/HomeController.dart';
                           border: Border.all(color: Colors.black,width: 2),
                           color: Colors.black
                       ),
-                      child:   Text("Level "+ data[3]['level'],
+                      child:   Text(data[3]['level'],
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               fontSize: 14,
