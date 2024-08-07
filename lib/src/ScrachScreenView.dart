@@ -8,7 +8,7 @@ import '../color/MyColor.dart';
 import '../session/Session.dart';
 import '../utill/Constant.dart';
 import '../utill/Utility.dart';
-import 'controller/HomeController.dart';
+import 'controller/ScrachViewController.dart';
 
  class ScrachScreenView extends  StatefulWidget {
         const ScrachScreenView({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ import 'controller/HomeController.dart';
         }
         class _WebViewScreenState extends State<ScrachScreenView> {
           var data = Get.arguments;
-          final controller = Get.put(HomeController());
+          final controller = Get.put(ScrachViewController());
         bool skrach = false;
         @override
         void initState() {
@@ -60,8 +60,8 @@ import 'controller/HomeController.dart';
                                 onChange: (value) { print("Scratch progress: $value%");},
                                 onThreshold: () {
 
-                                print("callAPI==="+(controller.image)!.level.toString()+"=="+data[2]['url']);
-                                callAPI(context,(controller.image)!.level.toString(),data[2]['url']);
+                                print("callAPI==="+data[3]['level']+"=="+data[2]['url']);
+                                callAPI(context,data[3]['level'],data[2]['url']);
                                 },
                                 child: ClipOval(
                                     child: SizedBox.fromSize(

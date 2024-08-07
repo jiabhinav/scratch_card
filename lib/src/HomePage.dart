@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:scrach_card/src/DirtyExtras.dart';
 import 'package:scrach_card/src/PassionatePlace.dart';
+import 'package:scrach_card/src/SansualSecretView.dart';
 import 'package:scrach_card/src/ScrachScreenView.dart';
 import 'package:scrach_card/src/SexPosition.dart';
 import 'package:scrach_card/src/controller/HomeController.dart';
@@ -108,6 +109,10 @@ import 'alertdialog/ImageDilaogView.dart';
                          if(index==2)
                          {
                            Get.to(() => DirtyExtras());
+                         }
+                         if(index==5)
+                         {
+                           Get.to(() => SansualSecretView());
                          }
                        },
                        );
