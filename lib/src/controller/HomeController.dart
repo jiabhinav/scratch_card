@@ -159,11 +159,11 @@ class HomeController extends GetxController {
     pro4.image="assets/icon/love.png";
     features.add(pro4);
 
-    var pro5=Features();
+   /* var pro5=Features();
     pro5.id=5;
     pro5.title="Erotic Sex Dice";
     pro5.image="assets/icon/erotic.png";
-    features.add(pro5);
+    features.add(pro5);*/
 
     var pro6=Features();
     pro6.id=6;

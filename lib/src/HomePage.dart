@@ -110,7 +110,7 @@ import 'alertdialog/ImageDilaogView.dart';
                          {
                            Get.to(() => DirtyExtras());
                          }
-                         if(index==5)
+                         if(index==4)
                          {
                            Get.to(() => SansualSecretView());
                          }

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'package:scrach_card/auth/Login.dart';
+import 'package:scrach_card/src/UpgradeMessage.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import '../color/MyColor.dart';
@@ -128,12 +129,18 @@ class _HomeState extends State<HomeMain> {
                 title: Text("Profile Info"),
               ),
 
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text("Upgrade to Pro"),
-            onTap:() =>
-            {
-            },),
+         // if(sp.getPaid()==0)
+
+              Visibility(
+                visible: sp.getPaid()==0?true:false,
+                child: ListTile(
+                  leading: Icon(Icons.home),
+                  title: Text("Upgrade to Pro"),
+                  onTap:() =>
+                  {
+                  Get.to(UpgradeMessage())
+                  },),
+              ),
 
               ListTile(
                 leading: Icon(Icons.follow_the_signs_outlined),

@@ -46,7 +46,7 @@ class DirtyExtras extends  StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(20),
-              child: Text(passionat_title,
+              child: Text(dirtyExtra_title,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 18,
@@ -68,6 +68,7 @@ class DirtyExtras extends  StatelessWidget {
                         var cat =  (controller.modelGetLevel)?.result!.dirtys![index];
                         //  controller.image= cat;
                         return Container(
+
                           margin: EdgeInsets.only(top: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,41 +91,26 @@ class DirtyExtras extends  StatelessWidget {
                                 shrinkWrap: true,
                                 itemCount: cat.data!.length,
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
-                                    childAspectRatio: 2.5
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 4
                                 ),
                                 itemBuilder: (BuildContext context, int index2){
                                   var model =  (cat.data![index2]);
-                                  return model.open==0?
                                   InkWell(
                                     onTap: () async {
-                                      levelIndex=index;
-                                      selectedIndex=index2;
-                                      callAPI(context,cat.dirty.toString(),model.tag!);
+                                      if(model.open==0)
+                                        {
+                                          levelIndex=index;
+                                          selectedIndex=index2;
+                                          callAPI(context,cat.dirty.toString(),model.tag!);
+                                        }
+
                                     },
                                     child:FittedBox(
                                       fit: BoxFit.scaleDown,
                                       child: Container(
                                         padding: EdgeInsets.all(10),
-                                        decoration: setBoxDecoration(Colors.black, 20),
-                                        child: Text(model.tag.toString(),
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: MyColor.golden,
-                                                fontFamily:"Montserrat",fontWeight: FontWeight.w500)),
-                                      ),
-                                    ),
-                                  ):InkWell(
-                                    onTap: () {
-                                      //ImageDialogView(context,imageURL+model.image!,"qedefefe2ffefff");
-              
-                                    },
-                                    child:FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Container(
-                                        padding: EdgeInsets.all(10),
-                                        decoration: setBoxDecoration(MyColor.complaint_suggestion, 20),
+                                        decoration: setBoxDecoration(model.open==0?Colors.black:MyColor.complaint_suggestion, 20),
                                         child: Text(model.tag.toString(),
                                             textAlign: TextAlign.center,
                                             style: TextStyle(

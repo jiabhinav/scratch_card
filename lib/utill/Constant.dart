@@ -14,3 +14,5 @@ const String terms="If you're referring to a game concept called `Terms of Play,
 
 const termsandcondtion = "We confirm that we have read and accept the Terms and Conditions,Privacy Policy and Disclaimer";
 const passionat_title="Try New Sex\n Spots & mark them";
+
+const dirtyExtra_title="Dare to try hot\n extra & mark them";

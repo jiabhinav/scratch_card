@@ -35,7 +35,6 @@ class Legal extends StatelessWidget {
               Get.back();
           },
           ),),
-        backgroundColor: Colors.white,
         body:  Expanded(
           child: Container(
             padding: EdgeInsets.all(10),
