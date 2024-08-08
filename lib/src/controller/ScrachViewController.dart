@@ -16,7 +16,7 @@ class ScrachViewController extends GetxController {
   var count = 0;
   var isLoader=null;
   bool isLoading = true;
-
+  bool skrach = false;
   int levelIndex=-1;
   int selectedIndex = -1;
   var modelDashboard=ModelDashBoard();
@@ -35,6 +35,12 @@ class ScrachViewController extends GetxController {
   void updateLevel(ModelGetLevel?modelGetLevel)
   {
     this.modelGetLevel=modelGetLevel;
+    update();
+  }
+
+  void updateOpen(bool skrach)
+  {
+    this.skrach=skrach;
     update();
   }
 

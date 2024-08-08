@@ -128,9 +128,6 @@ class _HomeState extends State<HomeMain> {
                 leading: Icon(Icons.person),
                 title: Text("Profile Info"),
               ),
-
-         // if(sp.getPaid()==0)
-
               Visibility(
                 visible: sp.getPaid()==0?true:false,
                 child: ListTile(

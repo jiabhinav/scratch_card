@@ -1,4 +1,4 @@
-package com.app.scrach_card
+package com.app.loveInfinity
 
 import io.flutter.embedding.android.FlutterActivity
 
