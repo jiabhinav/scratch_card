@@ -24,6 +24,7 @@ import '../model/model_dash_board.dart';
 import '../session/Session.dart';
 import '../utill/Constant.dart';
 import '../utill/Utility.dart';
+import 'LegalWebview.dart';
 import 'alertdialog/ImageDilaogView.dart';
 
 
@@ -110,6 +111,15 @@ import 'alertdialog/ImageDilaogView.dart';
                          {
                            Get.to(() => DirtyExtras());
                          }
+                         if(index==3)
+                         {
+                           var arg= [
+                             {"name": 'Love Lab'},
+                             {"url": 'https://softkwit.in/sex-positions-new/index.html'}
+                           ];
+                           Get.to(LegalWebview(),arguments: arg);
+                         }
+
                          if(index==4)
                          {
                            Get.to(() => SansualSecretView());
