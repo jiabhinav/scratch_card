@@ -63,6 +63,7 @@ class PassionatePlace extends  StatelessWidget {
                     child: Center(child: CircularProgressIndicator(),),) :
                   ListView.builder(
                       primary: false,
+                      shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: (controller.modelGetLevel)?.result!.places!.length,
                       itemBuilder: (context, index) {
@@ -89,10 +90,11 @@ class PassionatePlace extends  StatelessWidget {
                               SizedBox(height: 10,),
                               GridView.builder(
                                 shrinkWrap: true,
+                                physics: ClampingScrollPhysics(),
                                 itemCount: cat.data!.length,
                                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    childAspectRatio: 4
+                                    childAspectRatio: 3
                                 ),
                                 itemBuilder: (BuildContext context, int index2){
                                   var model =  (cat.data![index2]);

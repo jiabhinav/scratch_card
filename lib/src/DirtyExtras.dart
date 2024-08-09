@@ -68,7 +68,6 @@ class DirtyExtras extends  StatelessWidget {
                         var cat =  (controller.modelGetLevel)?.result!.dirtys![index];
                         //  controller.image= cat;
                         return Container(
-
                           margin: EdgeInsets.only(top: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,16 +86,17 @@ class DirtyExtras extends  StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 10,),
-                              GridView.builder(
-                                shrinkWrap: true,
-                                itemCount: cat.data!.length,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 4
-                                ),
+                          GridView.builder(
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemCount: cat.data!.length,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 4
+                              ),
                                 itemBuilder: (BuildContext context, int index2){
                                   var model =  (cat.data![index2]);
-                                  InkWell(
+                                  return InkWell(
                                     onTap: () async {
                                       if(model.open==0)
                                         {
